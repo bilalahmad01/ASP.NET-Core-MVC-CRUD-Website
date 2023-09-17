@@ -1,0 +1,42 @@
+﻿@model List<Product>
+
+    <div class="container">
+        <div class="row pt-4 pb-3">
+
+           <div class="col-6">
+               <h3 class="text-primary">Product List</h3>
+           </div>
+           <div class="col-6 text-end">
+            <a asp-controller="Product" asp-action="Upsert" class="btn btn-primary"><i class="bi bi-plus-circle-fill"></i> Create New Product</a>
+        </div>
+
+        </div>
+
+<table class="table table-bordered table-striped">
+    <tr>
+        <th>Title</th>
+        <th>ISBN</th>
+        <th>Price</th>
+        <th>Author</th>
+        <th>Category</th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var obj in Model)
+    {
+    <tr>
+        
+        <td>@obj.Title</td>
+        <td>@obj.ISBN</td> 
+        <td>@obj.Price</td>
+        <td>@obj.Author</td>
+        <td>@obj.Category.Name</td>
+        <td>
+            <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2"><i class="bi bi-pencil-square"></i> Edit</a>
+            <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2" onclick="return confirm('Are you sure you want to delete this Product?');"><i class="bi bi-trash-fill"></i> Delete</a>
+        </td>
+    </tr>
+        }
+</table>
+
+</div>

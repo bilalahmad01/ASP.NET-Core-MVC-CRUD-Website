@@ -1,0 +1,88 @@
+﻿@model Product   // We are working with Product model and it will create a new object. And by default all the values of that object will be empty.
+
+    <div class="border p-3 mt-4">
+    <div class="row pb-2">
+        @*<h3 class="text-primary">@(Model.Id!=0?"Update":"Create") Product</h3>*@
+        <h3 class="text-primary">Upsert Product</h3>
+        <hr />
+    </div>
+    @*<div asp-validation-summary="All"></div>*@
+    <form method="post" enctype="multipart/form-data">
+    <input asp-for="Id" hidden />
+    <div class="row">
+    <div class="col-10">
+                <div class="row mb-3 p-1">
+                    <label asp-for="Title"></label>
+                    <input asp-for="Title" class="form-control" />
+                    <span asp-validation-for="Title" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="Description"></label>
+                    <input asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="ISBN"></label>
+                    <input asp-for="ISBN" class="form-control" />
+                    <span asp-validation-for="ISBN" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="Author"></label>
+                    <input asp-for="Author" class="form-control" />
+                    <span asp-validation-for="Author" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="ListPrice"></label>
+                    <input asp-for="ListPrice" class="form-control" />
+                    <span asp-validation-for="ListPrice" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="Price"></label>
+                    <input asp-for="Price" class="form-control" />
+                    <span asp-validation-for="Price" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="Price50"></label>
+                    <input asp-for="Price50" class="form-control" />
+                    <span asp-validation-for="Price50" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="Price100"></label>
+                    <input asp-for="Price100" class="form-control" />
+                    <span asp-validation-for="Price100" class="text-danger"></span>
+                </div>
+
+                <div class="row mb-3 p-1">
+                    <label asp-for="CategoryId"></label>
+                    <select asp-for="CategoryId" class="form-select" asp-items="ViewBag.CategoryList">
+                        <option disabled selected>--Select Category--</option>
+                    </select>
+                    <span asp-validation-for="CategoryId" class="text-danger"></span>
+                </div>
+                <div class="row mb-3 p-1">
+                    <label asp-for="ImageUrl"></label>
+                    <input type="file" name="file" class="form-control" />
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">Upsert</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn-outline-primary">Back To Product List</a>
+                    </div>
+                </div>
+    </div>
+    <div class="col-2">
+        <img src="@Model.ImageUrl" style="width:100%;border-radius:5px;border:1px solid #bbb9b9" />
+    </div>
+    </div>
+    </form>
+    </div>
+   
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial"/>      // To use client-side validation partial view.
+    }
+}
